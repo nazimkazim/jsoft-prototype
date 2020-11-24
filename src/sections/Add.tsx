@@ -13,10 +13,11 @@ import AddIcon from '@material-ui/icons/Add';
 import { YMaps, Placemark, Map } from 'react-yandex-maps';
 
 export default function Add(props:any){
-  const {handleSubmit, level = 0, parentId = 0} = props
+  const {handleSubmit, type, item} = props
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("")
-  const randId = Math.floor(Math.random() * (10000 - 1)) + 1;
+  const parentRandId = Math.floor(Math.random() * (10000 - 1)) + 1;
+  const childRandId = Math.floor(Math.random() * (10000 - 1)) + 1;
 
   const [{ data, loading, error }, execute]  = useAxios({
     url:SERVER_URL + '/api/v1/location',
@@ -61,11 +62,8 @@ export default function Add(props:any){
             Отмена
           </Button>
           <Button color="primary" onClick={e => {
-            const data = generateLocationPOSTData({ level, value, parentId })
-            execute({
-              data,
-            })
-            handleSubmit({ id: randId, section_name: value, children:[{id:null, section_name:null}] })
+            handleSubmit({ id: parentRandId, section_name: value, children:[{id:childRandId, section_name:null}] },type, item, value)
+            setOpen(false);
           }}>
             Подвердить
           </Button>

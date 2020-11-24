@@ -30,10 +30,25 @@ const Sections = () => {
 
 	console.log(_sections);
 
-	const handleAdd = (section: { id: number, section_name: string, children: { id: number; section_name: string; }[]; }, type: string = 'parent') => {
-		const sectionsArr = [..._sections]
-		sectionsArr.push(section)
-		setSections(sectionsArr)
+	const handleAdd = (section: { id: number, section_name: string, children: { id: number; section_name: string; }[]; }, type, item, name) => {
+		const randId = Math.floor(Math.random() * (10000 - 1)) + 1;
+		if (type = 'child') {
+			let newSections = [...sections]
+			newSections.forEach((section) => {
+				if (section.id === item.id) {
+					console.log('true');
+					section.children.push({
+						id:randId, section_name:name
+					})
+					
+				}
+				setSections(newSections)
+			})
+		} else {
+			const sectionsArr = [..._sections]
+			sectionsArr.push(section)
+			setSections(sectionsArr)
+		}
 	}
 
 	const handleUpdate = (item, value, type) => {
@@ -84,19 +99,21 @@ const Sections = () => {
 							<Typography>
 								{index + 1} - {section && section.section_name}
 							</Typography>
-							<AddSection level={1} parentId={section?.id} handleSubmit={() => console.log("Done")} />
+							<AddSection level={1} handleSubmit={handleAdd} type="child" item={section} />
 							<UpdateSection handleUpdate={handleUpdate} section={section} type="parent" />
 							<RemoveRegion regionId={section?.id} handleDelete={() => handleDelete('area1', section.id)} />
 						</Box>
-						{section?.children.map((child) => (
-							<Box display={"flex"} alignItems={"center"} style={{ paddingLeft: 40 }}>
-								<Typography>
-									{child.section_name}
-								</Typography>
-								<UpdateSection handleUpdate={handleUpdate} section={child} type="child" />
-								<RemoveRegion regionId={child.id} handleDelete={() => handleDelete('area1', child.id)} />
-							</Box>
-						))}
+						{
+							section.children && section.children.map((child) => (
+								<Box display={"flex"} alignItems={"center"} style={{ paddingLeft: 40 }}>
+									<Typography>
+										{child.section_name}
+									</Typography>
+									<UpdateSection handleUpdate={handleUpdate} section={child} type="child" />
+									<RemoveRegion regionId={child.id} handleDelete={() => handleDelete('area1', child.id)} />
+								</Box>
+							))
+						}
 					</Box>
 				)
 			})}
