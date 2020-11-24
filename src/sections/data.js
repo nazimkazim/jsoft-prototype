@@ -1,6 +1,6 @@
 export const sections = [
   {
-    id: 1,
+    id: 0,
     section_name: "Спорт",
     children: [
       {
@@ -18,7 +18,7 @@ export const sections = [
     ]
   },
   {
-    id: 2,
+    id: 1,
     section_name: "Танцы",
     children: [
       {
@@ -32,6 +32,24 @@ export const sections = [
       {
         id: 6,
         section_name: "Хип-хоп"
+      },
+    ]
+  },
+  {
+    id: 2,
+    section_name: "Культура",
+    children: [
+      {
+        id: 7,
+        section_name: "Театр"
+      },
+      {
+        id: 8,
+        section_name: "Цирк"
+      },
+      {
+        id: 9,
+        section_name: "ИЗО"
       },
     ]
   }

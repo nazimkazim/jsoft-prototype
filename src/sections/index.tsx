@@ -84,10 +84,14 @@ const Sections = () => {
 		}
 	}
 
-	const handleDelete = (type: string, id: string) => {
+	const handleDelete = (id: number, type: string) => {
 		if (type === 'parent') {
-			console.log('true');
 			
+			let idx = [..._sections].map(function(x) {return x.id; }).indexOf(id)
+			console.log(idx);
+			let newSections = [..._sections].splice(0, idx)
+			//console.log(newSections);
+			setSections(newSections)
 		}
 	}
 
@@ -114,7 +118,7 @@ const Sections = () => {
 										{child.section_name}
 									</Typography>
 									<UpdateSection handleUpdate={handleUpdate} section={child} type="child" />
-									<RemoveRegion regionId={child.id} handleDelete={() => handleDelete('area1', child.id)} />
+									<RemoveRegion regionId={child.id} handleDelete={handleDelete} />
 								</Box>
 							))
 						}
