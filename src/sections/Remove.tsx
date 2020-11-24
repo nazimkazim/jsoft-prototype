@@ -10,7 +10,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import { IconButton, Typography } from "@material-ui/core";
 
 export default function Remove(props: any) {
-  const {handleSubmit, regionId} = props
+  const {handleDelete, sectionId, type} = props
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -36,7 +36,7 @@ export default function Remove(props: any) {
             Отмена
           </Button>
           <Button onClick={() => {
-            handleSubmit(regionId)
+            handleDelete(sectionId, type)
             setOpen(false)
             
           }} color="primary">

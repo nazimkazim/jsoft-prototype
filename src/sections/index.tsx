@@ -31,24 +31,29 @@ const Sections = () => {
 	console.log(_sections);
 
 	const handleAdd = (section: { id: number, section_name: string, children: { id: number; section_name: string; }[]; }, type, item, name) => {
+
 		const randId = Math.floor(Math.random() * (10000 - 1)) + 1;
-		if (type = 'child') {
+		console.log(type);
+		if (type === 'parent') {
+			const sectionsArr = [..._sections]
+			sectionsArr.push(section)
+			setSections(sectionsArr)
+		}
+
+		if (type === 'child') {
 			let newSections = [...sections]
 			newSections.forEach((section) => {
 				if (section.id === item.id) {
 					console.log('true');
 					section.children.push({
-						id:randId, section_name:name
+						id: randId, section_name: name
 					})
-					
 				}
 				setSections(newSections)
+
 			})
-		} else {
-			const sectionsArr = [..._sections]
-			sectionsArr.push(section)
-			setSections(sectionsArr)
 		}
+
 	}
 
 	const handleUpdate = (item, value, type) => {
@@ -80,17 +85,16 @@ const Sections = () => {
 	}
 
 	const handleDelete = (type: string, id: string) => {
-		if (type === 'area1') {
-			data.results.map((obj) => {
-				console.log(obj)
-			})
+		if (type === 'parent') {
+			console.log('true');
+			
 		}
 	}
 
 
 	return (
 		<Box>
-			<AddSection handleSubmit={handleAdd} />
+			<AddSection handleSubmit={handleAdd} type="parent" />
 			<br />
 			{_sections && _sections.map((section: any, index: any) => {
 				return (
@@ -101,7 +105,7 @@ const Sections = () => {
 							</Typography>
 							<AddSection level={1} handleSubmit={handleAdd} type="child" item={section} />
 							<UpdateSection handleUpdate={handleUpdate} section={section} type="parent" />
-							<RemoveRegion regionId={section?.id} handleDelete={() => handleDelete('area1', section.id)} />
+							<RemoveRegion sectionId={section?.id} handleDelete={handleDelete} type="parent" />
 						</Box>
 						{
 							section.children && section.children.map((child) => (
