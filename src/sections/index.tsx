@@ -105,7 +105,7 @@ const Sections = () => {
 
 	return (
 		<Box>
-			<AddSection handleSubmit={handleAdd} type="parent" />
+			<AddSection handleSubmit={handleAdd} title="добавить секцию" label="секция" type="parent" />
 			<br />
 			{_sections && _sections.map((section: any, index: any) => {
 				return (
