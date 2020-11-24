@@ -44,7 +44,7 @@ const Sections = () => {
 			let newSections = [..._sections]
 			newSections.forEach((section) => {
 				if (section.id === item.id) {
-					console.log('true');
+					//console.log('true');
 					section.children.push({
 						id: randId, section_name: name
 					})
@@ -86,16 +86,19 @@ const Sections = () => {
 
 	const handleDelete = (id: number, type: string) => {
 		if (type === 'parent') {
-			let idx = [..._sections].map(function(x) {return x.id; }).indexOf(id)
-			console.log(idx);
-			let newSections = [..._sections].splice(0, idx)
-			//console.log(newSections);
-			setSections(newSections)
+			let sectionsArr = [..._sections];
+			sectionsArr = sectionsArr.filter((item) => item.id !== id)
+			//console.log(sectionsArr);
+			setSections(sectionsArr)
 		}
 
 		if (type === 'child') {
-			console.log('this is child');
-			
+			let newSections = [..._sections]
+			newSections.forEach((section) => {
+				section.children = section.children.filter((item) => item.id !== id)
+			})
+			//console.log(id);
+			setSections(newSections)
 		}
 	}
 
