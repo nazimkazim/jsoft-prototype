@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Typography, TextField, Box, Button } from "@material-ui/core"
 import AddSection from './Add'
 import UpdateSection from './Update'
-import RemoveRegion from './Remove'
+import RemoveSection from './Remove'
 import useAxios, { configure, loadCache, serializeCache } from 'axios-hooks'
 import { SERVER_URL, TOKEN } from "../utils";
 import { sections } from './data'
@@ -41,7 +41,7 @@ const Sections = () => {
 		}
 
 		if (type === 'child') {
-			let newSections = [...sections]
+			let newSections = [..._sections]
 			newSections.forEach((section) => {
 				if (section.id === item.id) {
 					console.log('true');
@@ -86,12 +86,16 @@ const Sections = () => {
 
 	const handleDelete = (id: number, type: string) => {
 		if (type === 'parent') {
-			
 			let idx = [..._sections].map(function(x) {return x.id; }).indexOf(id)
 			console.log(idx);
 			let newSections = [..._sections].splice(0, idx)
 			//console.log(newSections);
 			setSections(newSections)
+		}
+
+		if (type === 'child') {
+			console.log('this is child');
+			
 		}
 	}
 
@@ -109,7 +113,7 @@ const Sections = () => {
 							</Typography>
 							<AddSection level={1} handleSubmit={handleAdd} type="child" item={section} />
 							<UpdateSection handleUpdate={handleUpdate} section={section} type="parent" />
-							<RemoveRegion sectionId={section?.id} handleDelete={handleDelete} type="parent" />
+							<RemoveSection sectionId={section?.id} handleDelete={handleDelete} type="parent" />
 						</Box>
 						{
 							section.children && section.children.map((child) => (
@@ -118,7 +122,7 @@ const Sections = () => {
 										{child.section_name}
 									</Typography>
 									<UpdateSection handleUpdate={handleUpdate} section={child} type="child" />
-									<RemoveRegion regionId={child.id} handleDelete={handleDelete} />
+									<RemoveSection sectionId={child?.id} handleDelete={handleDelete} type="child" />
 								</Box>
 							))
 						}

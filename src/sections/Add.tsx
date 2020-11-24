@@ -62,7 +62,7 @@ export default function Add(props:any){
             Отмена
           </Button>
           <Button color="primary" onClick={e => {
-            handleSubmit({ id: parentRandId, section_name: value, children:[{id:childRandId, section_name:null}] },type, item, value)
+            handleSubmit({ id: parentRandId, section_name: value, children:[{id:childRandId, section_name:''}] },type, item, value)
             setOpen(false);
           }}>
             Подвердить
