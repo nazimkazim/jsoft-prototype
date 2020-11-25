@@ -20,7 +20,7 @@ export default function Add(props: any) {
   const childRandId = Math.floor(Math.random() * (10000 - 1)) + 1;
 
   const [{ data, loading, error }, execute] = useAxios({
-    url: SERVER_URL + '/api/v1/location',
+    url: SERVER_URL + '/api/v1/services',
     method: "POST",
     headers: { "Authorization": TOKEN, },
     // baseUrl: ""

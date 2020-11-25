@@ -10,7 +10,7 @@ import { sections } from './data'
 
 const Sections = () => {
 	const [{ data, loading, error }, refetch] = useAxios({
-		url: SERVER_URL + '/api/v1/location',
+		url: SERVER_URL + '/api/v1/services',
 		method: "GET",
 		headers: { "Authorization": TOKEN, }
 	})

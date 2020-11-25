@@ -1,5 +1,5 @@
 export const SERVER_URL = "http://185.121.81.247:5505"
-export const TOKEN = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDYxMjQ2ODEsIm5iZiI6MTYwNjEyNDY4MSwianRpIjoiYmZjZWM1MTAtMjI0MS00OWY0LWI1MjYtODVhNWIwZGVkOTg2IiwiZXhwIjoxNjA2OTg4NjgxLCJpZGVudGl0eSI6MywiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.IuA9TQkG5W906Jwsq5uNJBbOhQ5CxqqWeiSr8S1wkcg"
+export const TOKEN = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDYyNzk2MzMsIm5iZiI6MTYwNjI3OTYzMywianRpIjoiMzMzMTkzYmItNWI2YS00M2IyLWFmNWQtYmI3ZjI4Mjk2NDBiIiwiZXhwIjoxNjA3MTQzNjMzLCJpZGVudGl0eSI6MywiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.NftoK9adxe1lMLHcG8J90Up1VKpt_G9tZ6c235jiAG4"
 
 export const generateLocationPOSTData = ({level, value, parentId}:any) => {
   let data: any
